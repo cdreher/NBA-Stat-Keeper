@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Welcome to {{ title }}!</h1>
+  <div class="cards" *ngFor="let t of teams">
+    <div class="card">
+      <img class="card-img-top" src="http://loodibee.com/wp-content/uploads/nba-{{t.city | lowercase}}-{{t.name | lowercase}}-logo-300x300.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{t.full_name}} </h5>
+        <p class="card-text">{{t.abbreviation}}, {{t.city}}, {{t.division}}, <b>{{t.conference | uppercase}}</b></p>
+        <a href="https://www.nba.com/{{t.name | lowercase}}" class="btn btn-primary">Team Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
