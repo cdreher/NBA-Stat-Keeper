@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PlayersComponent } from './players/players.component';
 import { TeamsComponent } from './teams/teams.component';
-import { SearchComponent } from './search/search.component';
 import { HttpService } from './services/http.service';
 
 
@@ -20,7 +19,6 @@ const routes : Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'players', component: PlayersComponent },
   { path: 'teams', component: TeamsComponent },
-  { path: 'search', component: SearchComponent }
 ]
 
 @NgModule({
@@ -28,8 +26,7 @@ const routes : Routes = [
     AppComponent,
     HomeComponent,
     PlayersComponent, 
-    TeamsComponent,
-    SearchComponent
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
