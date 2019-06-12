@@ -1,16 +1,21 @@
 <div class="container">
   <h1>Welcome to {{ title }}!</h1>
-  <div class="cards" *ngFor="let p of players">
-    <div *ngIf="p.height_feet != null"class="card">
-      <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51xAMbDaxDL._SX425_.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{p.first_name}} {{p.last_name}} </h5>
-        <p class="card-text">{{p.position}}, {{p.height_feet}}'{{p.height_inches}}", {{p.weight_pounds}} lbs, <b>{{p.team.name | uppercase}}</b></p>
-        <a href="#" class="btn btn-primary">Player Details</a>
+  <div class="filter">
+    <label for="filter">Filter by:&nbsp;</label>
+    <input id='filter' name='filter' type='text' [(ngModel)]='filter' placeholder="Enter first/last name here" />
+  </div>
+  <div style="width:33%; float:left" *ngFor="let p of filteredPlayers">
+    <div class="cards" *ngIf="p.height_feet != null">
+      <div class="card">
+        <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51xAMbDaxDL._SX425_.jpg"
+          alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{p.first_name}} {{p.last_name}} </h5>
+          <p class="card-text">{{p.position}}, {{p.height_feet}}'{{p.height_inches}}", {{p.weight_pounds}} lbs,
+            <b>{{p.team.name | uppercase}}</b></p>
+          <a href="#" class="btn btn-primary">Player Details</a>
+        </div>
       </div>
     </div>
   </div>
-
-  
-  
 </div>

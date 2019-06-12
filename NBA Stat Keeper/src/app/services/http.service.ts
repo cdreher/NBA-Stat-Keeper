@@ -14,7 +14,7 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   //Get a player with specified name
-  getPlayer(id: number): Observable<Player> {
+  getPlayer(name: string): Observable<Player> {
     const newUrl = `${this.player_url}&search=${name}`;
     return this._http.get<Player>(newUrl);
   }

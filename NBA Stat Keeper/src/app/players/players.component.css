@@ -9,17 +9,16 @@ img{
 .cards {
     display: inline-block; 
     text-align: center;
-    width: 33%
+    width: -webkit-fill-available;
 }
 
 .cards[style="hidden"] {
     height: 0;
 }
 
-.hidden{
-    width: 0;
-    visibility: hidden;
-    height: 0;
+.filter {
+    width: 33%;
+    padding: 1em;
 }
     
 .card {
