@@ -1,8 +1,55 @@
 <div class="container">
   <h1>Welcome to {{ title }}!</h1>
-  <div class="cards" *ngFor="let t of teams">
+</div>
+<div class="row" style="padding-bottom: 1em;">
+  <div class="col-md-3 col-lg-3">
+    <div class="col-md-4" ngbDropdown #myDrop="ngbDropdown" placement="left;">
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button class="btn" (click)="compareFilters('east') ? clear() : setFilter('east')" ngbDropdownItem>Eastern
+          Conference</button>
+        <button class="btn" (click)="compareFilters('west') ? clear() : setFilter('west')" ngbDropdownItem>Western
+          Conference</button>
+      </div>
+      <button class="btn btn-primary btn-block" id="dropdownManual" (click)=" myDrop.toggle();">Conference</button>
+    </div>
+    <div class="col-md-4" ngbDropdown #myDrop2="ngbDropdown" placement="left">
+      <div ngbDropdownMenu aria-labelledby="dropdownManual2">
+        <button class="btn" (click)="compareFilters('atlantic') ? clear() : setFilter('atlantic')"
+          ngbDropdownItem>Atlantic</button>
+        <button class="btn" (click)="compareFilters('central') ? clear() : setFilter('central')"
+          ngbDropdownItem>Central</button>
+        <button class="btn" (click)="compareFilters('southeast') ? clear() : setFilter('southeast')"
+          ngbDropdownItem>Southeast</button>
+        <button class="btn" (click)="compareFilters('northwest') ? clear() : setFilter('northwest')"
+          ngbDropdownItem>Northwest</button>
+        <button class="btn" (click)="compareFilters('pacific') ? clear() : setFilter('pacific')"
+          ngbDropdownItem>Pacific</button>
+        <button class="btn" (click)="compareFilters('southwest') ? clear() : setFilter('southwest')"
+          ngbDropdownItem>Southwest</button>
+      </div>
+      <button class="btn btn-danger btn-block" id="dropdownManual2" (click)="myDrop2.toggle();">Division</button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-dark btn-block" (click)="clear()">Clear</button>
+    </div>
+  </div>
+  <div>
+    <h4 *ngIf="isFiltered">Filter: <b>{{_filter | uppercase}}</b></h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards" *ngFor="let t of filteredTeams">
     <div class="card">
-      <img class="card-img-top" src="http://loodibee.com/wp-content/uploads/nba-{{t.city | lowercase}}-{{t.name | lowercase}}-logo-300x300.png" alt="Card image cap">
+      <!-- We have to test if we have the LA Clippers or Denver Nuggets, given that their image URLs do not follow the same pattern -->
+      <img *ngIf="t.city=='Denver'" class="card-img-top"
+        src="http://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo-2018-300x300.png" alt="Card image cap">
+      <img *ngIf="t.city=='LA'" class="card-img-top"
+        src="http://loodibee.com/wp-content/uploads/nba-la-clippers-logo-png-300x300.png" alt="Card image cap">
+      <img *ngIf="t.city !='Denver' && t.city != 'LA'" class="card-img-top"
+        src="http://loodibee.com/wp-content/uploads/nba-{{t.city | lowercase | removeWhiteSpaces}}-{{t.name | lowercase | removeWhiteSpaces}}-logo-300x300.png"
+        alt="Card image cap">
+
       <div class="card-body">
         <h5 class="card-title">{{t.full_name}} </h5>
         <p class="card-text">{{t.abbreviation}}, {{t.city}}, {{t.division}}, <b>{{t.conference | uppercase}}</b></p>
@@ -11,4 +58,3 @@
     </div>
   </div>
 </div>
-  
