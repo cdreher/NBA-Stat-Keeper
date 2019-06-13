@@ -17,8 +17,8 @@
     </div>
   </div>
   <div class="row buttons">
-    <button class="btn btn-primary">Season Averages</button>
-    <button class="btn btn-primary">Game Log</button>
+    <button class="btn btn-primary" (click)="showAvgs()">Season Averages</button>
+    <button class="btn btn-primary" (click)="showGames()">Game Log</button>
   </div>
 
   <!-- 2018-2019 Season Stats -->
@@ -74,7 +74,7 @@
   </div>
 
   <!-- Season Averages -->
-  <div class="row">
+  <div class="row" *ngIf="show_avgs">
     <h3>Season Averages</h3>
     <table>
       <tr>
@@ -127,7 +127,7 @@
   </div>
 
   <!-- Game Log -->
-  <div class="row">
+  <div class="row" *ngIf="show_games">
     <h3>Game Log</h3>
     <table>
       <tr>
@@ -158,8 +158,10 @@
       <tr *ngFor='let g of games'>
         <td>{{g.game.date | slice:0:10}}</td>
         <!-- <th>{{g.game.home_team_id}} vs. {{g.game.visitor_team_id}}</th> -->
-        <th *ngIf="g.player.team_id === g.game.home_team_id && g.game.home_team_score > g.game.visitor_team_score || 
-          g.player.team_id === g.game.visitor_team_id && g.game.visitor_team_score > g.game.home_team_score; then win else loss"></th>
+        <th
+          *ngIf="g.player.team_id === g.game.home_team_id && g.game.home_team_score > g.game.visitor_team_score || 
+          g.player.team_id === g.game.visitor_team_id && g.game.visitor_team_score > g.game.home_team_score; then win else loss">
+        </th>
         <th>{{g.player.position}}</th>
         <th>{{g.min}}</th>
         <th>{{g.pts}}</th>
@@ -185,12 +187,6 @@
   </div>
 </div>
 
-<ng-template #home>
-  <th><b *ngIf="g.game.home_team_score > g.game.visitor_team_score; then win else loss"></b></th>
-</ng-template>
-<ng-template #visitor>
-  <th><b *ngIf="g.game.visitor_team_score > g.game.home_team_score; then win else loss"></b></th>
-</ng-template>
 <ng-template #win>
   <b>W</b>
 </ng-template>

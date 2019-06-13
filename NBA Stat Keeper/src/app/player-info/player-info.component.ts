@@ -18,6 +18,8 @@ export class PlayerInfoComponent implements OnInit {
   seasons: SeasonStats[];
   games: Stats[];
   team: Team;
+  show_avgs: boolean = true;
+  show_games: boolean = false;
 
   constructor(private _http: HttpService, private route: ActivatedRoute) { }
 
@@ -35,7 +37,7 @@ export class PlayerInfoComponent implements OnInit {
     this.seasons = new Array();
     for (let x = this.year; x > 2009; x--) {
       this._http.getSeasonStats(x.toString(), id).subscribe(s => {
-        this.seasons = this.seasons.concat(s["data"][0]); 
+        this.seasons = this.seasons.concat(s["data"][0]);
         this.seasons = this.seasons.sort((a, b) => +b.season - +a.season);
       });
     }
@@ -43,8 +45,20 @@ export class PlayerInfoComponent implements OnInit {
     //Get player game statistics for current season
     this._http.getGameStats("2018", id).subscribe(s => {
       this.games = s["data"];
-      this.games = this.games.sort((a,b) => b.game.date.localeCompare(a.game.date));
-  });
+      this.games = this.games.sort((a, b) => b.game.date.localeCompare(a.game.date));
+    });
+  }
+
+  //Show season averages
+  showAvgs(): void {
+    this.show_avgs = true;
+    this.show_games = false;
+  }
+
+  //Show game log
+  showGames(): void {
+    this.show_games = true;
+    this.show_avgs = false;
   }
 
   //Get team by specified id
