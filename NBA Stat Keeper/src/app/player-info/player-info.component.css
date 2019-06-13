@@ -10,12 +10,6 @@
     left: 0;
     bottom: 0;
 }
-
-
-.filter-page {
-    padding: 1em;
-}
-    
 .card {
     border: 2px solid #e7e7e7; 
     border-radius: 4px; 
@@ -46,5 +40,36 @@ table {
     width: 100%;
     border: 2px solid #e7e7e7; 
     border-radius: 4px; 
-    margin: 1em;
+    margin: 2em 0;
 }
+
+.table-dark {
+    color: #fff;
+    background-color: #212529;
+    border: none;
+}.table-dark thead {
+    display: table-header-group;
+    vertical-align: middle;
+}.table-dark tr {
+    display: table-row;
+    vertical-align: inherit;
+}.table-dark td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table-light thead {
+    background-color: #212529;
+    color: #fff;
+    display: table-header-group;
+    vertical-align: middle;
+}.table-light tr {
+    display: table-row;
+    vertical-align: inherit;
+}.table-light td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
