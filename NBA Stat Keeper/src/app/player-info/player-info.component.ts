@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Player } from '../player';
 import { SeasonStats } from '../season-stats';
 import { Stats } from '../stats';
+import { Team } from '../team';
 
 @Component({
   selector: 'app-player-info',
@@ -16,6 +17,7 @@ export class PlayerInfoComponent implements OnInit {
   year: number = 2018;
   seasons: SeasonStats[];
   games: Stats[];
+  team: Team;
 
   constructor(private _http: HttpService, private route: ActivatedRoute) { }
 
@@ -39,7 +41,15 @@ export class PlayerInfoComponent implements OnInit {
     }
 
     //Get player game statistics for current season
-    this._http.getGameStats("2018", id).subscribe(s => this.games = s["data"]);
+    this._http.getGameStats("2018", id).subscribe(s => {
+      this.games = s["data"];
+      this.games = this.games.sort((a,b) => b.game.date.localeCompare(a.game.date));
+  });
+  }
+
+  //Get team by specified id
+  getTeam(id: string): void {
+    this._http.getTeamById(id).subscribe(t => this.team = t);
   }
 
 }

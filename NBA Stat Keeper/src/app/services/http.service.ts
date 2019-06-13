@@ -12,6 +12,7 @@ import { Stats } from '../stats';
 export class HttpService {
   private player_url = 'https://www.balldontlie.io/api/v1/players?per_page=100';
   private url = 'https://www.balldontlie.io/api/v1/players';
+  private url2 = 'https://www.balldontlie.io/api/v1/teams';
   private team_url = 'https://www.balldontlie.io/api/v1/teams?per_page=30';
   private season_url = 'https://www.balldontlie.io/api/v1/season_averages';
   private stats_url = 'https://www.balldontlie.io/api/v1/stats';
@@ -24,6 +25,7 @@ export class HttpService {
     return this._http.get<Player>(newUrl);
   }
 
+  //Get player be specified Id
   getPlayerById(id: number): Observable<Player> {
     const newUrl = `${this.url}/${id}`
     return this._http.get<Player>(newUrl);
@@ -45,6 +47,12 @@ export class HttpService {
   //Get a team with specified name
   getTeam(name: string): Observable<Team> {
     const newUrl = `${this.team_url}&search=${name}`;
+    return this._http.get<Team>(newUrl);
+  }
+
+  //Get player be specified Id
+  getTeamById(id: string): Observable<Team> {
+    const newUrl = `${this.url2}/${id}`
     return this._http.get<Team>(newUrl);
   }
 

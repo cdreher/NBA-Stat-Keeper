@@ -128,58 +128,72 @@
 
   <!-- Game Log -->
   <div class="row">
-      <h3>Game Log</h3>
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Opponent</th>
-          <th>Result</th>
-          <th>Position</th>
-          <th>MIN</th>
-          <th>PTS</th>
-          <th>FGM</th>
-          <th>FGA</th>
-          <th>FG%</th>
-          <th>3PM</th>
-          <th>3PA</th>
-          <th>3P%</th>
-          <th>FTM</th>
-          <th>FTA</th>
-          <th>FT%</th>
-          <th>OREB</th>
-          <th>DREB</th>
-          <th>REB</th>
-          <th>AST</th>
-          <th>STL</th>
-          <th>BLK</th>
-          <th>PF</th>
-          <th>TOV</th>
-        </tr>
-        <tr *ngFor='let g of games'>
-          <td>{{g.game.date}}</td>
-          <th>TODO</th>
-          <th>{{g.game.home_team_score}} - {{g.game.visitor_team_score}}</th>
-          <th>{{g.player.position}}</th>
-          <th>{{g.min}}</th>
-          <th>{{g.pts}}</th>
-          <th>{{g.fgm}}</th>
-          <th>{{g.fga}}</th>
-          <th>{{g.fg_pct}}</th>
-          <th>{{g.fg3m}}</th>
-          <th>{{g.fg3a}}</th>
-          <th>{{g.fg3_pct}}</th>
-          <th>{{g.ftm}}</th>
-          <th>{{g.fta}}</th>
-          <th>{{g.ft_pct}}</th>
-          <th>{{g.oreb}}</th>
-          <th>{{g.dreb}}</th>
-          <th>{{g.reb}}</th>
-          <th>{{g.ast}}</th>
-          <th>{{g.stl}}</th>
-          <th>{{g.blk}}</th>
-          <th>{{g.pf}}</th>
-          <th>{{g.turnover}}</th>
-        </tr>
-      </table>
-    </div>
+    <h3>Game Log</h3>
+    <table>
+      <tr>
+        <th>Date</th>
+        <!-- <th>Opponent</th> -->
+        <th>W/L</th>
+        <th>Position</th>
+        <th>MIN</th>
+        <th>PTS</th>
+        <th>FGM</th>
+        <th>FGA</th>
+        <th>FG%</th>
+        <th>3PM</th>
+        <th>3PA</th>
+        <th>3P%</th>
+        <th>FTM</th>
+        <th>FTA</th>
+        <th>FT%</th>
+        <th>OREB</th>
+        <th>DREB</th>
+        <th>REB</th>
+        <th>AST</th>
+        <th>STL</th>
+        <th>BLK</th>
+        <th>PF</th>
+        <th>TOV</th>
+      </tr>
+      <tr *ngFor='let g of games'>
+        <td>{{g.game.date | slice:0:10}}</td>
+        <!-- <th>{{g.game.home_team_id}} vs. {{g.game.visitor_team_id}}</th> -->
+        <th *ngIf="g.player.team_id === g.game.home_team_id && g.game.home_team_score > g.game.visitor_team_score || 
+          g.player.team_id === g.game.visitor_team_id && g.game.visitor_team_score > g.game.home_team_score; then win else loss"></th>
+        <th>{{g.player.position}}</th>
+        <th>{{g.min}}</th>
+        <th>{{g.pts}}</th>
+        <th>{{g.fgm}}</th>
+        <th>{{g.fga}}</th>
+        <th>{{g.fg_pct}}</th>
+        <th>{{g.fg3m}}</th>
+        <th>{{g.fg3a}}</th>
+        <th>{{g.fg3_pct}}</th>
+        <th>{{g.ftm}}</th>
+        <th>{{g.fta}}</th>
+        <th>{{g.ft_pct}}</th>
+        <th>{{g.oreb}}</th>
+        <th>{{g.dreb}}</th>
+        <th>{{g.reb}}</th>
+        <th>{{g.ast}}</th>
+        <th>{{g.stl}}</th>
+        <th>{{g.blk}}</th>
+        <th>{{g.pf}}</th>
+        <th>{{g.turnover}}</th>
+      </tr>
+    </table>
+  </div>
 </div>
+
+<ng-template #home>
+  <th><b *ngIf="g.game.home_team_score > g.game.visitor_team_score; then win else loss"></b></th>
+</ng-template>
+<ng-template #visitor>
+  <th><b *ngIf="g.game.visitor_team_score > g.game.home_team_score; then win else loss"></b></th>
+</ng-template>
+<ng-template #win>
+  <b>W</b>
+</ng-template>
+<ng-template #loss>
+  <b>L</b>
+</ng-template>

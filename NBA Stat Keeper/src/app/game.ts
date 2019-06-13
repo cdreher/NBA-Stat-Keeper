@@ -10,6 +10,6 @@ export class Game {
     status: string;
     time: string;
     postseason: false;
-    home_team: Team;
-    visitor_team: Team;
+    home_team_id: number;
+    visitor_team_id: number;
 }

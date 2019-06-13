@@ -20,7 +20,16 @@ export class Stats {
     min: string;
     oreb: string;
     pf: string;
-    player: Player;
+    player: {
+        id: number;
+        first_name: string;
+        height_feet: string;
+        height_inches: string;
+        last_name: string;
+        position: string;
+        team_id: number;
+        weight_pounds: string;
+    };
     pts: string;
     reb: string;
     stl: string;
