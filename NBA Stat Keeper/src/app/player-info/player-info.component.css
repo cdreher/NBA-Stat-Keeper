@@ -10,6 +10,16 @@
     left: 0;
     bottom: 0;
 }
+
+.logo {
+    float: right;
+    height: 100px; 
+}
+.logo img{
+    width: 200px;
+    margin-right: 1em;
+}
+
 .card {
     border: 2px solid #e7e7e7; 
     border-radius: 4px; 
