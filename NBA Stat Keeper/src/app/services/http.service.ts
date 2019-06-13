@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../player';
 import { Team } from '../team';
+import { SeasonStats } from '../season-stats';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Team } from '../team';
 export class HttpService {
   private player_url = 'https://www.balldontlie.io/api/v1/players?per_page=100';
   private url = 'https://www.balldontlie.io/api/v1/players';
-  private team_url = 'https://www.balldontlie.io/api/v1/teams?per_page=30'
+  private team_url = 'https://www.balldontlie.io/api/v1/teams?per_page=30';
+  private season_url = 'https://www.balldontlie.io/api/v1/season_averages';
 
   constructor(private _http: HttpClient) { }
 
@@ -47,6 +49,12 @@ export class HttpService {
   //Get all teams
   getTeams(): Observable<Team[]> {
     return this._http.get<Team[]>(this.team_url);
+  }
+
+  //Get season stats
+  getSeasonStats(year: string, id: number): Observable<SeasonStats> {
+    const newUrl = `${this.season_url}?season=${year}&player_ids[]=${id}`;
+    return this._http.get<SeasonStats>(newUrl);
   }
 }
 
