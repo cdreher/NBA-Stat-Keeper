@@ -1,10 +1,24 @@
 <div class="container">
   <h1>Welcome to {{ title }}!</h1>
-  <div class="filter">
-    <label for="filter">Filter by:&nbsp;</label>
-    <input id='filter' name='filter' type='text' [(ngModel)]='filter' placeholder="Enter first/last name here" />
+  <div class="row">
+    <div class="col-md-4">
+      <label for="filter">Filter by:&nbsp;</label>
+      <input id='filter' class="form-control" name='filter' type='text' [(ngModel)]='filter'
+        placeholder="Enter first/last name here" />
+    </div>
+    <div class="col-md-5" style="float:right;">
+      <!-- <ul class="pagination pagination-lg">
+        <li class="page-item"><a class="page-link" (click)="nextPage(1)">1</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(27)" >27</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(28)" >28</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(29)" >29</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(30)" >30</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(31)" >31</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(32)">32</a></li>
+      </ul> -->
+    </div>
   </div>
-  <div style="width:33%; float:left" *ngFor="let p of filteredPlayers">
+  <div style="width:33%; float:left" *ngFor="let p of players">
     <div class="cards" *ngIf="p.height_feet != null">
       <div class="card">
         <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51xAMbDaxDL._SX425_.jpg"
@@ -13,7 +27,7 @@
           <h5 class="card-title">{{p.first_name}} {{p.last_name}} </h5>
           <p class="card-text">{{p.position}}, {{p.height_feet}}'{{p.height_inches}}", {{p.weight_pounds}} lbs,
             <b>{{p.team.name | uppercase}}</b></p>
-          <a href="#" class="btn btn-primary">Player Details</a>
+          <a routerLink='/players/{{p.id}}' class="btn btn-primary">Player Details</a>
         </div>
       </div>
     </div>

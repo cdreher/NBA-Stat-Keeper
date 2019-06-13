@@ -11,14 +11,19 @@ import { PlayersComponent } from './players/players.component';
 import { TeamsComponent } from './teams/teams.component';
 import { HttpService } from './services/http.service';
 
-import { RemoveWhiteSpacesPipe } from './pipes/remove-white-spaces.pipe'
+import { RemoveWhiteSpacesPipe } from './pipes/remove-white-spaces.pipe';
+import { PlayerInfoComponent } from './player-info/player-info.component'
 
 
 const routes : Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'players', component: PlayersComponent },
-  { path: 'teams', component: TeamsComponent },
+  { path: 'players', children: [
+      { path: '', component: PlayersComponent },
+      { path: ':id', component: PlayerInfoComponent }
+    ] 
+  },
+  { path: 'teams', component: TeamsComponent }
 ]
 
 @NgModule({
@@ -27,7 +32,8 @@ const routes : Routes = [
     HomeComponent,
     PlayersComponent, 
     TeamsComponent,
-    RemoveWhiteSpacesPipe
+    RemoveWhiteSpacesPipe,
+    PlayerInfoComponent
   ],
   imports: [
     BrowserModule,

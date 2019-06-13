@@ -8,7 +8,8 @@ import { Team } from '../team';
   providedIn: 'root'
 })
 export class HttpService {
-  private player_url = 'https://www.balldontlie.io/api/v1/players?per_page=50';
+  private player_url = 'https://www.balldontlie.io/api/v1/players?per_page=100';
+  private url = 'https://www.balldontlie.io/api/v1/players';
   private team_url = 'https://www.balldontlie.io/api/v1/teams?per_page=30'
 
   constructor(private _http: HttpClient) { }
@@ -19,9 +20,22 @@ export class HttpService {
     return this._http.get<Player>(newUrl);
   }
 
+  getPlayerById(id: number): Observable<Player> {
+    const newUrl = `${this.url}/${id}`
+    return this._http.get<Player>(newUrl);
+  }
+
   //Get all players
-  getPlayers(): Observable<Player[]> {
-    return this._http.get<Player[]>(this.player_url);
+  // getPlayers(): Observable<Player[]> {
+  //   return this._http.get<Player[]>(this.player_url);
+  // }
+  getPlayers(url: string): Observable<Player[]> {
+    return this._http.get<Player[]>(url);
+  }
+
+  nextPage(page: number): Observable<Player[]> {
+    const newUrl = `${this.player_url}&page=${page}`;
+    return this._http.get<Player[]>(newUrl);
   }
 
   //Get a team with specified name

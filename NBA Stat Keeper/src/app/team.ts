@@ -6,6 +6,4 @@ export class Team {
     division: string;
     full_name: string;
     name: string;
-    url: string;
-    imageUrl: string;
 }
