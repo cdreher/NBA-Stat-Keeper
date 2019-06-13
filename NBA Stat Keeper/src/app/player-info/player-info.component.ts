@@ -3,6 +3,7 @@ import { HttpService } from '../services/http.service';
 import { ActivatedRoute } from '@angular/router';
 import { Player } from '../player';
 import { SeasonStats } from '../season-stats';
+import { Stats } from '../stats';
 
 @Component({
   selector: 'app-player-info',
@@ -13,7 +14,8 @@ export class PlayerInfoComponent implements OnInit {
   player: Player;
   season: SeasonStats;
   year: number = 2018;
-  seasons: SeasonStats[]
+  seasons: SeasonStats[];
+  games: Stats[];
 
   constructor(private _http: HttpService, private route: ActivatedRoute) { }
 
@@ -36,6 +38,8 @@ export class PlayerInfoComponent implements OnInit {
       });
     }
 
+    //Get player game statistics for current season
+    this._http.getGameStats("2018", id).subscribe(s => this.games = s["data"]);
   }
 
 }
