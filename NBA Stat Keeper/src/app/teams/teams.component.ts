@@ -9,13 +9,15 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
-  title = 'Teams Page';
+  title = 'Teams';
   team: Team;
   teams: Team[];
   isFiltered: boolean = false;
   filteredTeams: Team[];
   _filter: string = '';
-
+  current: string = "Hawks";
+  teamView: boolean = false;
+  leagueView: boolean = true;
 
   constructor(private _httpService: HttpService, private app: AppComponent) { }
 
@@ -61,4 +63,20 @@ export class TeamsComponent implements OnInit {
     return filter == this._filter;
   }
 
+  // Show selected team.
+  showTeam(t: string): void{
+    this.current = t;
+  }
+
+  // Show team view.
+  showTeamView(): void {
+    this.teamView = true;
+    this.leagueView = false;
+  }
+
+  // Show league view.
+  showLeagueView(): void {
+    this.leagueView = true;
+    this.teamView = false;
+  }
 }

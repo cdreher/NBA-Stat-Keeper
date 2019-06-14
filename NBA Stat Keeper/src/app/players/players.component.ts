@@ -9,7 +9,7 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./players.component.css']
 })
 export class PlayersComponent implements OnInit {
-  title = 'Players Page';
+  title = 'Players';
   player: Player;
   players: Player[];
   filteredPlayers: Player[];

@@ -1,5 +1,6 @@
-img{
-    width: 100px;
+.views{
+    margin: 0 1em 2em 1em;
+    width: 25%;
 }
 
 .container{
@@ -11,15 +12,8 @@ img{
     text-align: center;
     width: 33%
 }
-
-.cards[style="hidden"] {
-    height: 0;
-}
-
-.hidden{
-    width: 0;
-    visibility: hidden;
-    height: 0;
+.cards img {
+    width: 100px;
 }
     
 .card {
@@ -40,4 +34,59 @@ img{
 }
 .btn-dropdown:focus {
     background-color: #dddddd;
+}
+
+.cards-team {
+    text-align: center;
+    width: 100%
+}
+ 
+.card-team {
+    border: 2px solid #e7e7e7; 
+    border-radius: 4px; 
+    padding: .5rem; 
+    height: 500px; 
+}
+
+.card-head {
+    width: 100%;
+    text-align: left;
+    padding: 2em;
+}
+.card-head h1 {
+    font-size: 3em;
+    font-weight: 800;
+    display: inline;
+}
+.card-head img {
+    display: inline;
+    width: 30%;
+}
+
+.team-list{
+    list-style: none;
+    padding: 1em; 
+}
+.team-list img {
+    display: inline;
+    width: 5em;
+}
+.team-list li {
+    width: 100%;
+    text-align: left;
+}
+.team-list li:hover {
+    background-color: #dddddd;
+}
+.team-list li::selection {
+    background-color: #dddddd;
+}
+.team-list h4 {
+    display: inline;
+}
+.team-list a {
+    font-weight: 600;
+}
+.team-list a:hover {
+    cursor: pointer;
 }
