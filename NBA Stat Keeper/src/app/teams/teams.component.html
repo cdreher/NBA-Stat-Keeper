@@ -3,28 +3,28 @@
 </div>
 <div class="row" style="padding-bottom: 1em;">
   <div class="col-md-3 col-lg-3">
-    <div class="col-md-4" ngbDropdown #myDrop="ngbDropdown" placement="left;">
+    <div class="col-md-4" ngbDropdown #myDrop="ngbDropdown">
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
-        <button class="btn" (click)="compareFilters('east') ? clear() : setFilter('east')" ngbDropdownItem>Eastern
+        <button class="btn btn-dropdown" (click)="compareFilters('east') ? clear() : setFilter('east')" ngbDropdownItem>Eastern
           Conference</button>
-        <button class="btn" (click)="compareFilters('west') ? clear() : setFilter('west')" ngbDropdownItem>Western
+        <button class="btn btn-dropdown" (click)="compareFilters('west') ? clear() : setFilter('west')" ngbDropdownItem>Western
           Conference</button>
       </div>
       <button class="btn btn-primary btn-block" id="dropdownManual" (click)=" myDrop.toggle();">Conference</button>
     </div>
-    <div class="col-md-4" ngbDropdown #myDrop2="ngbDropdown" placement="left">
+    <div class="col-md-4" ngbDropdown #myDrop2="ngbDropdown">
       <div ngbDropdownMenu aria-labelledby="dropdownManual2">
-        <button class="btn" (click)="compareFilters('atlantic') ? clear() : setFilter('atlantic')"
+        <button class="btn btn-dropdown" (click)="compareFilters('atlantic') ? clear() : setFilter('atlantic')"
           ngbDropdownItem>Atlantic</button>
-        <button class="btn" (click)="compareFilters('central') ? clear() : setFilter('central')"
+        <button class="btn btn-dropdown" (click)="compareFilters('central') ? clear() : setFilter('central')"
           ngbDropdownItem>Central</button>
-        <button class="btn" (click)="compareFilters('southeast') ? clear() : setFilter('southeast')"
+        <button class="btn btn-dropdown" (click)="compareFilters('southeast') ? clear() : setFilter('southeast')"
           ngbDropdownItem>Southeast</button>
-        <button class="btn" (click)="compareFilters('northwest') ? clear() : setFilter('northwest')"
+        <button class="btn btn-dropdown" (click)="compareFilters('northwest') ? clear() : setFilter('northwest')"
           ngbDropdownItem>Northwest</button>
-        <button class="btn" (click)="compareFilters('pacific') ? clear() : setFilter('pacific')"
+        <button class="btn btn-dropdown" (click)="compareFilters('pacific') ? clear() : setFilter('pacific')"
           ngbDropdownItem>Pacific</button>
-        <button class="btn" (click)="compareFilters('southwest') ? clear() : setFilter('southwest')"
+        <button class="btn btn-dropdown" (click)="compareFilters('southwest') ? clear() : setFilter('southwest')"
           ngbDropdownItem>Southwest</button>
       </div>
       <button class="btn btn-danger btn-block" id="dropdownManual2" (click)="myDrop2.toggle();">Division</button>

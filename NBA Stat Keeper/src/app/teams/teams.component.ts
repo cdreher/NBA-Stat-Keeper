@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../team'
 import { HttpService } from '../services/http.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-teams',
@@ -13,44 +14,49 @@ export class TeamsComponent implements OnInit {
   teams: Team[];
   isFiltered: boolean = false;
   filteredTeams: Team[];
-  _filter: string ='';
-  
-  
-  constructor(private _httpService: HttpService) { }
+  _filter: string = '';
+
+
+  constructor(private _httpService: HttpService, private app: AppComponent) { }
 
   ngOnInit() {
-    //Get a team
-    //this._httpService.getTeam("Celtics").subscribe(p => this.player = p);
+    // Get list of all teams.
+    if (this.app.teams == null) {
+      this._httpService.getTeams().subscribe(p => {
+        this.teams = p["data"];
+        this.app.setTeams(this.teams);
+        this.filteredTeams = this.teams;
+      });
+    }
+    else {
+      this.teams = this.app.teams;
+      this.filteredTeams = this.teams;
+    }
 
-    //Get all teams
-    this._httpService.getTeams().subscribe(p => this.teams = p["data"]);
-
-    //Get sorted teams
-    this._httpService.getTeams().subscribe(p => this.filteredTeams = p["data"]);
   }
 
-  //Filter teams by division/conference
+  // Filter teams by division/conference.
   filterTeams(filter: string): Team[] {
     this.isFiltered = true;
     return this.teams.filter((team: Team) =>
       team.division.toLocaleLowerCase().indexOf(filter) !== -1 ||
-      team.conference.toLocaleLowerCase().indexOf(filter) !== -1 );
+      team.conference.toLocaleLowerCase().indexOf(filter) !== -1);
   }
 
-  //Set filter
+  // Set filter.
   setFilter(filter: string): void {
     this._filter = filter;
     this.filteredTeams = this._filter ? this.filterTeams(this._filter) : this.teams;
   }
 
-  //Clear filter
+  // Clear filter.
   clear(): void {
     this._filter = '';
     this.isFiltered = false;
     this.setFilter('');
   }
 
-  //Compare filters
+  // Compare filters.
   compareFilters(filter: string): boolean {
     return filter == this._filter;
   }

@@ -19,22 +19,18 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
-  //Get a player with specified name
+  // Get a player with specified name.
   getPlayer(name: string): Observable<Player> {
     const newUrl = `${this.player_url}&search=${name}`;
     return this._http.get<Player>(newUrl);
   }
 
-  //Get player be specified Id
+  // Get player be specified Id.
   getPlayerById(id: number): Observable<Player> {
     const newUrl = `${this.url}/${id}`
     return this._http.get<Player>(newUrl);
   }
-
-  //Get all players
-  // getPlayers(): Observable<Player[]> {
-  //   return this._http.get<Player[]>(this.player_url);
-  // }
+  // Get all players on given page.
   getPlayers(url: string): Observable<Player[]> {
     return this._http.get<Player[]>(url);
   }
@@ -44,30 +40,30 @@ export class HttpService {
     return this._http.get<Player[]>(newUrl);
   }
 
-  //Get a team with specified name
+  // Get a team with specified name.
   getTeam(name: string): Observable<Team> {
     const newUrl = `${this.team_url}&search=${name}`;
     return this._http.get<Team>(newUrl);
   }
 
-  //Get player be specified Id
+  // Get player be specified Id.
   getTeamById(id: string): Observable<Team> {
     const newUrl = `${this.url2}/${id}`
     return this._http.get<Team>(newUrl);
   }
 
-  //Get all teams
+  // Get all teams on given page.
   getTeams(): Observable<Team[]> {
     return this._http.get<Team[]>(this.team_url);
   }
 
-  //Get season stats for given season and player
+  // Get season stats for given season and player.
   getSeasonStats(year: string, id: number): Observable<SeasonStats> {
     const newUrl = `${this.season_url}?season=${year}&player_ids[]=${id}`;
     return this._http.get<SeasonStats>(newUrl);
   }
 
-  //Get game statistics for all games in given season and player
+  // Get game statistics for all games in given season and player.
   getGameStats(year: string, id: number): Observable<Stats[]> {
     const newUrl = `${this.stats_url}?seasons[]=${year}&player_ids[]=${id}`;
     return this._http.get<Stats[]>(newUrl);

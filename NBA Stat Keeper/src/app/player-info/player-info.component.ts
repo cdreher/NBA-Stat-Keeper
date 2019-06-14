@@ -24,16 +24,16 @@ export class PlayerInfoComponent implements OnInit {
   constructor(private _http: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //Get player id from url path
+    // Get player id from url path.
     const id = +this.route.snapshot.paramMap.get('id');
 
-    //Get player information from id
+    // Get player information from id.
     this._http.getPlayerById(id).subscribe(p => this.player = p);
 
-    //Get player stats for 2018-2019 season
+    // Get player stats for 2018-2019 season.
     this._http.getSeasonStats("2018", id).subscribe(s => this.season = s["data"][0]);
 
-    //Get player averages for last decade
+    // Get player averages for last decade.
     this.seasons = new Array();
     for (let x = this.year; x > 2009; x--) {
       this._http.getSeasonStats(x.toString(), id).subscribe(s => {
@@ -42,26 +42,26 @@ export class PlayerInfoComponent implements OnInit {
       });
     }
 
-    //Get player game statistics for current season
+    // Get player game statistics for current season.
     this._http.getGameStats("2018", id).subscribe(s => {
       this.games = s["data"];
       this.games = this.games.sort((a, b) => b.game.date.localeCompare(a.game.date));
     });
   }
 
-  //Show season averages
+  // Show season averages.
   showAvgs(): void {
     this.show_avgs = true;
     this.show_games = false;
   }
 
-  //Show game log
+  // Show game log.
   showGames(): void {
     this.show_games = true;
     this.show_avgs = false;
   }
 
-  //Get team by specified id
+  // Get team by specified id.
   getTeam(id: string): void {
     this._http.getTeamById(id).subscribe(t => this.team = t);
   }
