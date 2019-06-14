@@ -41,26 +41,27 @@ export class PlayersComponent implements OnInit {
   ngOnInit() {
     // Get sorted list of all players.
     if (this.app.players == null) {
-      this._httpService.getPlayers(this.url).subscribe(p => {
-        this.players = p["data"].sort((a, b) => a.last_name.localeCompare(b.last_name));
-        this.app.setPlayers(this.players);
-        this.filteredPlayers = this.players;
-      });
-      // this.players = new Array();
-      // for (let x = this.count; x <= 32; x++) {
-      //   const newUrl = `${this.url}&page=${x}`;
-      //   this._httpService.getPlayers(newUrl).subscribe(p => {
-      //     this.temp = 0;
-      //     while (this.temp < p["data"].length) {
-      //       if (p["data"][this.temp].height_feet != null) {
-      //         this.players = this.players.concat(p["data"][this.temp] as Player);
-      //       }
-      //       this.temp++;
-      //     }
-      //     this.players = this.players.sort((a, b) => a.last_name.localeCompare(b.last_name));
-      //     this.filteredPlayers = this.players;
-      //   });
-      // }
+      // this._httpService.getPlayers(this.url).subscribe(p => {
+      //   this.players = p["data"].sort((a, b) => a.last_name.localeCompare(b.last_name));
+      //   this.app.setPlayers(this.players);
+      //   this.filteredPlayers = this.players;
+      // });
+      this.players = new Array();
+      for (let x = this.count; x <= 32; x++) {
+        const newUrl = `${this.url}&page=${x}`;
+        this._httpService.getPlayers(newUrl).subscribe(p => {
+          this.temp = 0;
+          while (this.temp < p["data"].length) {
+            if (p["data"][this.temp].height_feet != null) {
+              this.players = this.players.concat(p["data"][this.temp] as Player);
+            }
+            this.temp++;
+          }
+          this.players = this.players.sort((a, b) => a.last_name.localeCompare(b.last_name));
+          this.app.setPlayers(this.players);
+          this.filteredPlayers = this.players;
+        });
+      }
     }
     else {
       this.players = this.app.players;

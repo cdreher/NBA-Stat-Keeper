@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../team'
 import { HttpService } from '../services/http.service';
 import { AppComponent } from '../app.component';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-teams',
@@ -12,6 +13,7 @@ export class TeamsComponent implements OnInit {
   title = 'Teams';
   team: Team;
   teams: Team[];
+  roster: Player[];
   isFiltered: boolean = false;
   filteredTeams: Team[];
   _filter: string = '';
@@ -66,6 +68,7 @@ export class TeamsComponent implements OnInit {
   // Show selected team.
   showTeam(t: string): void{
     this.current = t;
+    this.roster = this.app.players.filter(p => p.team.name == t);
   }
 
   // Show team view.

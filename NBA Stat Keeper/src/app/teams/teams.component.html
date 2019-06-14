@@ -4,9 +4,10 @@
 
 <div class="container">
   <button class="views btn btn-primary" (click)="showLeagueView()">League View</button>
-  <button class="views btn btn-primary" (click)="showTeamView()">Team View</button>
+  <button class="views btn btn-primary" (click)="showTeamView(); showTeam('Hawks')">Team View</button>
 </div>
 
+<!-- League View for teams -->
 <div *ngIf="leagueView" id="leagueView">
   <div class="row" style="padding-bottom: 1em;">
     <div class="col-md-3 col-lg-3">
@@ -68,7 +69,7 @@
   </div>
 </div>
 
-
+<!-- Team View for teams -->
 <div class="container" *ngIf="teamView" id="teamView">
   <div class="col-md-4">
     <ul class="team-list">
@@ -88,19 +89,31 @@
     <div class="cards-team" *ngFor="let t of filteredTeams">
       <div class="card-team" *ngIf="current == t.name">
         <div class="row card-head">
-          <!-- We have to test if we have the LA Clippers or Denver Nuggets, given that their image URLs do not follow the same pattern -->
-          <img *ngIf="t.city=='Denver'" class="card-img-top"
-            src="http://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo-2018-300x300.png" alt="Card image cap">
-          <img *ngIf="t.city=='LA'" class="card-img-top"
-            src="http://loodibee.com/wp-content/uploads/nba-la-clippers-logo-png-300x300.png" alt="Card image cap">
-          <img *ngIf="t.city !='Denver' && t.city != 'LA'" class="card-img-top"
-            src="http://loodibee.com/wp-content/uploads/nba-{{t.city | lowercase | removeWhiteSpaces}}-{{t.name | lowercase | removeWhiteSpaces}}-logo-300x300.png"
-            alt="Card image cap">
-          <h1>{{t.full_name}}</h1>
+          <div class="col-md-4">
+            <!-- We have to test if we have the LA Clippers or Denver Nuggets, given that their image URLs do not follow the same pattern -->
+            <img *ngIf="t.city=='Denver'" class="card-img-top"
+              src="http://loodibee.com/wp-content/uploads/nba-denver-nuggets-logo-2018-300x300.png">
+            <img *ngIf="t.city=='LA'" class="card-img-top"
+              src="http://loodibee.com/wp-content/uploads/nba-la-clippers-logo-png-300x300.png">
+            <img *ngIf="t.city !='Denver' && t.city != 'LA'" class="card-img-top"
+              src="http://loodibee.com/wp-content/uploads/nba-{{t.city | lowercase | removeWhiteSpaces}}-{{t.name | lowercase | removeWhiteSpaces}}-logo-300x300.png">
+          </div>
+          <div class="col-md-8 header-details">
+            <h1>{{t.full_name}}</h1>
+            <h5 class="card-text">{{t.abbreviation}}, {{t.division}}, <b>{{t.conference | uppercase}}</b></h5>
+            <a href="https://www.nba.com/{{t.name | lowercase}}" class="btn btn-primary">Team Website</a>
+          </div>
+
         </div>
         <div class="row card-body">
-          <p class="card-text">{{t.abbreviation}}, {{t.city}}, {{t.division}}, <b>{{t.conference | uppercase}}</b></p>
-          <a href="https://www.nba.com/{{t.name | lowercase}}" class="btn btn-primary">Team Website</a>
+          <div class="player" *ngFor="let r of roster">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51xAMbDaxDL._SX425_.jpg">
+            <div class="card-body">
+              <h4><b>{{r.first_name}} {{r.last_name}}</b></h4>
+              <p>{{r.position}}</p>
+              <p>{{r.height_feet}}'{{r.height_inches}}" | {{r.weight_pounds}} lbs</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

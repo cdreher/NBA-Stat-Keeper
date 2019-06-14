@@ -45,7 +45,6 @@
     border: 2px solid #e7e7e7; 
     border-radius: 4px; 
     padding: .5rem; 
-    height: 500px; 
 }
 
 .card-head {
@@ -53,14 +52,18 @@
     text-align: left;
     padding: 2em;
 }
-.card-head h1 {
+.card-head img {
+    display: inline;
+    width: 100%;
+}
+
+.header-details {
+    display: grid;
+}
+.header-details h1 {
     font-size: 3em;
     font-weight: 800;
     display: inline;
-}
-.card-head img {
-    display: inline;
-    width: 30%;
 }
 
 .team-list{
@@ -89,4 +92,17 @@
 }
 .team-list a:hover {
     cursor: pointer;
+}
+
+.player {
+    transition: 0.3s;
+    width: 33%;
+    display: inline-block;
+    padding: 2em;
+}
+.player img {
+    width: 50%;
+}
+.player:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
