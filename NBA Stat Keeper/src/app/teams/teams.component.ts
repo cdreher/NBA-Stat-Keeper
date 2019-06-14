@@ -20,6 +20,7 @@ export class TeamsComponent implements OnInit {
   current: string = "Hawks";
   teamView: boolean = false;
   leagueView: boolean = true;
+  showRosterNote: boolean = false;
 
   constructor(private _httpService: HttpService, private app: AppComponent) { }
 
@@ -75,11 +76,18 @@ export class TeamsComponent implements OnInit {
   showTeamView(): void {
     this.teamView = true;
     this.leagueView = false;
+    if(this.app.players == null) {
+      this.showRosterNote = true;
+    }
+    else {
+      this.showRosterNote = false;
+    }
   }
 
   // Show league view.
   showLeagueView(): void {
     this.leagueView = true;
     this.teamView = false;
+    this.showRosterNote = false;
   }
 }

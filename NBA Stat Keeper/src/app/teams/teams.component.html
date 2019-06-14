@@ -4,7 +4,12 @@
 
 <div class="container">
   <button class="views btn btn-primary" (click)="showLeagueView()">League View</button>
-  <button class="views btn btn-primary" (click)="showTeamView(); showTeam('Hawks')">Team View</button>
+  <button class="views btn btn-primary" (click)="showTeamView(); clear(); showTeam('Hawks')">Team View</button>
+</div>
+
+<div class="container" *ngIf="showRosterNote">
+  <p><b>NOTE: </b>To limit the amount of API requests, in order to view the team rosters, navigate to the Players page
+    and then come back here!</p>
 </div>
 
 <!-- League View for teams -->
@@ -13,31 +18,39 @@
     <div class="col-md-3 col-lg-3">
       <div class="col-md-4" ngbDropdown #myDrop="ngbDropdown">
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button class="btn btn-dropdown" (click)="compareFilters('east') ? clear() : setFilter('east')"
+          <button class="btn btn-dropdown" (click)="compareFilters('east') ? clear() : setFilter('east', 'conference')"
             ngbDropdownItem>Eastern
             Conference</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('west') ? clear() : setFilter('west')"
+          <button class="btn btn-dropdown" (click)="compareFilters('west') ? clear() : setFilter('west', 'conference')"
             ngbDropdownItem>Western
             Conference</button>
         </div>
-        <button class="btn btn-primary btn-block" id="dropdownManual" (click)=" myDrop.toggle();">Conference</button>
+        <button class="btn btn-primary btn-block" id="dropdownManual"
+          (click)=" myDrop.toggle();">Conference <span class="glyphicon glyphicon-chevron-down"></span></button>
       </div>
       <div class="col-md-4" ngbDropdown #myDrop2="ngbDropdown">
         <div ngbDropdownMenu aria-labelledby="dropdownManual2">
-          <button class="btn btn-dropdown" (click)="compareFilters('atlantic') ? clear() : setFilter('atlantic')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('atlantic') ? clear() : setFilter('atlantic', 'division')"
             ngbDropdownItem>Atlantic</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('central') ? clear() : setFilter('central')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('central') ? clear() : setFilter('central', 'division')"
             ngbDropdownItem>Central</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('southeast') ? clear() : setFilter('southeast')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('southeast') ? clear() : setFilter('southeast', 'division')"
             ngbDropdownItem>Southeast</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('northwest') ? clear() : setFilter('northwest')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('northwest') ? clear() : setFilter('northwest', 'division')"
             ngbDropdownItem>Northwest</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('pacific') ? clear() : setFilter('pacific')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('pacific') ? clear() : setFilter('pacific', 'division')"
             ngbDropdownItem>Pacific</button>
-          <button class="btn btn-dropdown" (click)="compareFilters('southwest') ? clear() : setFilter('southwest')"
+          <button class="btn btn-dropdown"
+            (click)="compareFilters('southwest') ? clear() : setFilter('southwest', 'division')"
             ngbDropdownItem>Southwest</button>
         </div>
-        <button class="btn btn-danger btn-block" id="dropdownManual2" (click)="myDrop2.toggle();">Division</button>
+        <button class="btn btn-danger btn-block" id="dropdownManual2"
+          (click)="myDrop2.toggle();">Division <span class="glyphicon glyphicon-chevron-down"></span></button>
       </div>
       <div class="col-md-4">
         <button class="btn btn-dark btn-block" (click)="clear()">Clear</button>

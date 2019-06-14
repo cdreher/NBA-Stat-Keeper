@@ -6,16 +6,29 @@
       <input id='filter' class="form-control" name='filter' style="margin-bottom: 1em;" type='text' [(ngModel)]='filter'
         placeholder="Enter first/last name here" />
     </div>
-    <div class="col-md-5" style="float:right;">
-      <!-- <ul class="pagination pagination-lg">
-        <li class="page-item"><a class="page-link" (click)="nextPage(1)">1</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(27)" >27</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(28)" >28</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(29)" >29</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(30)" >30</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(31)" >31</a></li>
-        <li class="page-item"><a class="page-link" (click)="nextPage(32)">32</a></li>
-      </ul> -->
+    <div class="col-md-4" ngbDropdown #myDrop="ngbDropdown" style="margin: 25px 0 0 0" placement="bottom-right">
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button class="btn btn-dropdown" (click)="showAll()" ngbDropdownItem>All</button>
+        <button class="btn btn-dropdown" (click)="showLess()" ngbDropdownItem>42 per page</button>
+      </div>
+      <button class="btn btn-primary" id="dropdownManual" (click)=" myDrop.toggle();">{{pageButtonText}} 
+        <span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+    <div class="col-md-4 page" style="float:right;">
+      <ul class="pagination pagination-lg">
+        <li class="page-item"><a class="page-link" (click)="nextPage(1); myFunction()">1</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(2)">2</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(3)">3</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(4)">4</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(5)">5</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(6)">6</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(7)">7</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(8)">8</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(9)">9</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(10)">10</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(11)">11</a></li>
+        <li class="page-item"><a class="page-link" (click)="nextPage(12)">12</a></li>
+      </ul>
     </div>
   </div>
   <div style="width:33%; float:left" *ngFor="let p of filteredPlayers">

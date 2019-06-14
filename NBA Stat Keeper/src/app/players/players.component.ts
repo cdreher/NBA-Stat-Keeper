@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Player } from '../player';
 import { AppComponent } from '../app.component';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-players',
@@ -10,6 +11,7 @@ import { AppComponent } from '../app.component';
 })
 export class PlayersComponent implements OnInit {
   title = 'Players';
+  pageButtonText = 'Players Per Page';
   player: Player;
   players: Player[];
   filteredPlayers: Player[];
@@ -24,10 +26,11 @@ export class PlayersComponent implements OnInit {
     // ELSE ==> return filtered list of players.
     if (s == "") {
       this.filteredPlayers = this.players;
+      this.pageButtonText = "All"
     }
     else {
       this._filter = s.toLocaleLowerCase();
-      this.filteredPlayers = this.players.filter(n => n.last_name.toLowerCase().indexOf(s) != -1 || n.first_name.toLowerCase().indexOf(s) != -1);
+      this.filteredPlayers = this.filteredPlayers.filter(n => n.last_name.toLowerCase().indexOf(s) != -1 || n.first_name.toLowerCase().indexOf(s) != -1);
     }
 
   }
@@ -41,11 +44,6 @@ export class PlayersComponent implements OnInit {
   ngOnInit() {
     // Get sorted list of all players.
     if (this.app.players == null) {
-      // this._httpService.getPlayers(this.url).subscribe(p => {
-      //   this.players = p["data"].sort((a, b) => a.last_name.localeCompare(b.last_name));
-      //   this.app.setPlayers(this.players);
-      //   this.filteredPlayers = this.players;
-      // });
       this.players = new Array();
       for (let x = this.count; x <= 32; x++) {
         const newUrl = `${this.url}&page=${x}`;
@@ -57,21 +55,36 @@ export class PlayersComponent implements OnInit {
             }
             this.temp++;
           }
-          this.players = this.players.sort((a, b) => a.last_name.localeCompare(b.last_name));
+          //this.players = this.players.sort((a, b) => a.last_name.localeCompare(b.last_name));
           this.app.setPlayers(this.players);
-          this.filteredPlayers = this.players;
+          this.filteredPlayers = this.players.sort((a, b) => a.last_name.localeCompare(b.last_name));
         });
       }
     }
     else {
-      this.players = this.app.players;
-      this.filteredPlayers = this.players;
+      this.filteredPlayers = this.app.players;
     }
 
   }
 
+  // Show all players.
+  showAll(): void {
+    this.filteredPlayers = this.app.players;
+    this.pageButtonText = 'All'
+  }
+
+  // Show 40 players per page.
+  showLess(): void {
+    this.filteredPlayers = this.app.players.slice(0, 42);
+    this.pageButtonText = '42 per page';
+  }
+
+  // Move to next page of players
   nextPage(page: number): void {
-    this._httpService.nextPage(page).subscribe(p => this.players = p["data"].sort((a, b) => a.last_name.localeCompare(b.last_name)));
+    let start = (page - 1) * 42;
+    let end = page * 42;
+    this.pageButtonText = '42 per page'
+    this.filteredPlayers = this.app.players.slice(start, end);
   }
 
 }

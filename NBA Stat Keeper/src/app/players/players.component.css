@@ -27,3 +27,24 @@ img{
     padding: .5rem;  
     
 }
+
+.btn-dropdown{
+    background-color: transparent;
+    border: none;
+    display: block;
+    width: 100%;
+}
+.btn-dropdown:hover {
+    background-color: #dddddd;
+}
+.btn-dropdown:focus {
+    background-color: #dddddd;
+}
+
+.page-item:hover {
+    cursor: pointer;
+}
+
+.pagination li a.selected {
+    background-color: #dddddd;
+}
