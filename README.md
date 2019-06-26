@@ -8,7 +8,7 @@ Using the HTTPClient functionality in Angular 8, I was able to scrape and parse 
 The landing page was set up using basic Angular principles, coupled with bootstrap styling. The navbar is styled with Bootstrap, and wired up with Angular routing.
 
 <p align="center">
-  <img src="NBA Stat Keeper/images/home.PNG" width="750"/>
+  <img src="NBA Stat Keeper/images/home.PNG" width="800"/>
  </p>
 
 &nbsp;  
@@ -27,7 +27,7 @@ This endpoint returns all players from all seasons of the NBA.
 
 &nbsp;  
 <p align="center">
-  <img src="NBA Stat Keeper/images/players.gif" width="750"/>
+  <img src="NBA Stat Keeper/images/players.gif" width="800"/>
  </p>
 
 &nbsp;  
@@ -74,7 +74,7 @@ This endpoint returns all stats.
 
 &nbsp;  
 <p align="center">
-  <img src="NBA Stat Keeper/images/player.gif" width="750"/>
+  <img src="NBA Stat Keeper/images/player.gif" width="800"/>
  </p>
 
 &nbsp;  
@@ -92,7 +92,7 @@ This endpoint returns all teams for the current season.
     
 &nbsp;
 <p align="center">
-  <img src="NBA Stat Keeper/images/teams.gif" width="750"/>
+  <img src="NBA Stat Keeper/images/teams.gif" width="800"/>
  </p>
 
 &nbsp;
