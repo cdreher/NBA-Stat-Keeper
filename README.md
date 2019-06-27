@@ -4,6 +4,15 @@ An Angular 8 project made to keep track of NBA statistics. This application make
 ## Overview
 Using the HTTPClient functionality in Angular 8, I was able to scrape and parse data from an open source API. This required various API calls in different areas of the program to hit all of the endpoints that I wanted.
 
+To run using Angular CLI, first install `npm` and then install `@angular/cli`:
+
+    npm install
+    npm install -g @angular/cli
+    
+Then simply run using:
+
+    ng s --o
+
 ## Home Page
 The landing page was set up using basic Angular principles, coupled with bootstrap styling. The navbar is styled with Bootstrap, and wired up with Angular routing.
 
